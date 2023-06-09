@@ -1,0 +1,71 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "venv: setup",
+                "type": "shell",
+                "dependsOrder": "sequence",
+                "dependsOn": [
+                    "bypass",
+                    "venv: create",
+                    "pyp: install"
+                ],
+                "group": {
+                    "kind": "none",
+                    "isDefault": true
+                },
+                "problemMatcher": []
+            },
+            {
+                "label": "bypass",
+                "type": "shell",
+                "command": "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser",
+                "problemMatcher": [],
+                "hide": true
+            },
+            {
+                "label": "venv: create",
+                "type": "shell",
+                "command": "python -m venv .venv",
+                "group": {
+                    "kind": "none",
+                    "isDefault": true
+                },
+                "problemMatcher": [],
+                "hide": true
+            },
+            {
+                "label": "pyp: install",
+                "type": "shell",
+                "command": ".venv/scripts/activate;python -m pip install --upgrade pip;pip install -r requirements.txt",
+                "group": {
+                    "kind": "none",
+                    "isDefault": true
+                },
+                "problemMatcher": [],
+                "hide": true
+            }
+        ]
+    },
+    "settings": {
+        "window.title": "Packet Sender",
+        "autoDocstring.generateDocstringOnEnter": true,
+        "autoDocstring.guessTypes": true,
+        "editor.formatOnSave": true,
+        "python.defaultInterpreterPath": ".venv/Scripts/python.exe",
+        "python.formatting.provider": "black",
+        "python.analysis.typeCheckingMode": "strict",
+        "python.analysis.extraPaths": [
+            ".venv/Lib/site-packages/"
+        ],
+        "[python]": {
+            "editor.defaultFormatter": "ms-python.black-formatter",
+        }
+    }
+}
