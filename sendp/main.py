@@ -1,19 +1,20 @@
 import click
-from ethernet import ether
+from ethernet import sendp_ether,confp_ether_header
 
 @click.group()
 def sendp_cli():
     """展示信息"""
     pass
 
-# @sendp_cli.group()
-# def ether():
-#     """Send ethernet packet to other."""
-#     pass
+@sendp_cli.group()
+def ether():
+    """Send ethernet packet to other."""
+    pass
 
-# ether.add_command(sendp_ether)
+ether.add_command(sendp_ether)
+ether.add_command(confp_ether_header)
 
-sendp_cli.add_command(ether)
+# sendp_cli.add_command(ether)
 
 @sendp_cli.group()
 def arp():
