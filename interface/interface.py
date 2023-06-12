@@ -55,10 +55,10 @@ def get_iface_mac_address(iface_name: str) -> str:
     - ``iface_name``: interface name
 
     Returns:
-    - Mac address of ``iface_name``
+    - ``iface_mac_address``: MAC address of ``iface_name``
 
     Raises:
-    - ValueError
+    - ``ValueError`` if interface with name ``iface_name`` does not exist
     """
     iface_mac_address = iface_mac_mappings.get(iface_name)
     if iface_mac_address is None:
@@ -76,16 +76,16 @@ def get_iface_mac_address(iface_name: str) -> str:
 
 def get_iface_ip_address(iface_name: str) -> str:
     """
-    Get mac address of specific interface
+    Get ip address of specific interface
 
     Args:
     - ``iface_name``: interface name
 
     Returns:
-    - Mac address of ``iface_name``
+    - ``iface_ip_address``: IP address of ``iface_name``
 
     Raises:
-    - ValueError
+    - ``ValueError`` if interface with name ``iface_name`` does not exist
     """
     iface_ip_address = iface_ip_mappings.get(iface_name)
     if iface_ip_address is None:
@@ -103,16 +103,16 @@ def get_iface_ip_address(iface_name: str) -> str:
 
 def get_iface_ipv6_address(iface_name: str) -> str:
     """
-    Get mac address of specific interface
+    Get ipv6 address of specific interface
 
     Args:
     - ``iface_name``: interface name
 
     Returns:
-    - Mac address of ``iface_name``
+    - ``iface_ipv6_address``: IPv6 address of ``iface_name``
 
     Raises:
-    - ValueError
+    - ``ValueError`` if interface with name ``iface_name`` does not exist
     """
     iface_ipv6_address = iface_ipv6_mappings.get(iface_name)
     if iface_ipv6_address is None:
