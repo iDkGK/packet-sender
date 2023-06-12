@@ -1,6 +1,7 @@
 import click
-from database.redisclient import redisclient
-from interface import interface
+from utilities.interface import get_iface_mac_address
+
+# from utilities.redisclient import redisclient
 
 
 @click.command(name="conf")
@@ -35,7 +36,7 @@ def configure_ether_pkt(
     None
     """
     key = "ETHER_PKT:HEADER: {}".format(pkt_id)
-    src = interface.get_iface_mac_address("eth0") if src is None else src
+    src = get_iface_mac_address("eth0") if src is None else src
     dst = "ff:ff:ff:ff:ff:ff" if dst is None else dst
     type = "0x8000" if type is None else type
     fields = {

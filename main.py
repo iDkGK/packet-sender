@@ -13,7 +13,7 @@ from protocol.ether import send_ether_pkt, configure_ether_pkt
 
 @click.group()
 def packet_sender_cli() -> None:
-    """Display information"""
+    """A tool helpful for sending different protocols of packets"""
     pass
 
 
