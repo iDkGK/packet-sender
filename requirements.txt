@@ -1,1 +1,4 @@
 click
+netifaces; sys_platform == 'linux'
+psutil
+redis

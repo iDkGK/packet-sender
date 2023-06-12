@@ -1,58 +1,69 @@
 import click
-from ethernet import ether
+from ethernet import sendp_ether, confp_ether_header
+
 
 @click.group()
 def sendp_cli():
-    """展示信息"""
+    """Display information"""
     pass
 
-# @sendp_cli.group()
-# def ether():
-#     """Send ethernet packet to other."""
-#     pass
 
-# ether.add_command(sendp_ether)
+@sendp_cli.group()
+def ether():
+    """Send ethernet packet"""
+    pass
 
-sendp_cli.add_command(ether)
+
+ether.add_command(sendp_ether)
+ether.add_command(confp_ether_header)
+
+# sendp_cli.add_command(ether)
+
 
 @sendp_cli.group()
 def arp():
-    """Send arp packet to other"""
+    """Send arp packet"""
     pass
+
 
 @sendp_cli.group()
 def ip():
-    """Send ip packet to other"""
+    """Send ip packet"""
     pass
+
 
 @sendp_cli.group()
 def ipv6():
-    """Send ipv6 packet to other"""
+    """Send ipv6 packet"""
     pass
+
 
 @sendp_cli.group()
 def ecmp():
-    """Send ecmp packet to other"""
+    """Send ecmp packet"""
     pass
+
 
 @sendp_cli.group()
 def tcp():
-    """Send tcp packet to other"""
+    """Send tcp packet"""
     pass
+
 
 @sendp_cli.group()
 def udp():
-    """Send udp packet to other"""
+    """Send udp packet"""
     pass
+
 
 @sendp_cli.group()
 def vxlan():
-    """Send vxlan packet to other"""
+    """Send vxlan packet"""
     pass
+
 
 # sendp_cli.add_command(ether)
 # sendp_cli.add_command(arp)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sendp_cli()
-

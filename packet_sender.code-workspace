@@ -50,6 +50,17 @@
                 },
                 "problemMatcher": [],
                 "hide": true
+            },
+            {
+                "label": "pyp: upgrade",
+                "type": "shell",
+                "command": ".venv/scripts/activate;python -m pip install --upgrade pip;pip install -Ur requirements.txt",
+                "group": {
+                    "kind": "none",
+                    "isDefault": true
+                },
+                "problemMatcher": [],
+                "hide": false
             }
         ]
     },
