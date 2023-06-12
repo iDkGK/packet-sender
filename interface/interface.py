@@ -5,10 +5,42 @@ iface_mac_mappings: dict[str, str] = dict(
     map(
         lambda fkvp: (
             fkvp[0],
-            list(filter(lambda fvalue: fvalue.family.name, fkvp[1]))[0].address,
+            list(filter(lambda fvalue: fvalue.family.name == "AF_LINK", fkvp[1]))[
+                0
+            ].address,
         ),
         filter(
             lambda kvp: any(map(lambda value: value.family.name == "AF_LINK", kvp[1])),
+            psutil.net_if_addrs().items(),
+        ),
+    )
+)
+
+iface_ip_mappings: dict[str, str] = dict(
+    map(
+        lambda fkvp: (
+            fkvp[0],
+            list(filter(lambda fvalue: fvalue.family.name == "AF_INET", fkvp[1]))[
+                0
+            ].address,
+        ),
+        filter(
+            lambda kvp: any(map(lambda value: value.family.name == "AF_INET", kvp[1])),
+            psutil.net_if_addrs().items(),
+        ),
+    )
+)
+
+iface_ipv6_mappings: dict[str, str] = dict(
+    map(
+        lambda fkvp: (
+            fkvp[0],
+            list(filter(lambda fvalue: fvalue.family.name == "AF_INET6", fkvp[1]))[
+                0
+            ].address,
+        ),
+        filter(
+            lambda kvp: any(map(lambda value: value.family.name == "AF_INET6", kvp[1])),
             psutil.net_if_addrs().items(),
         ),
     )

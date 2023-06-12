@@ -12,55 +12,55 @@ from protocol.ether import send_ether_pkt, configure_ether_pkt
 
 
 @click.group()
-def packet_sender_cli():
+def packet_sender_cli() -> None:
     """Display information"""
     pass
 
 
 @packet_sender_cli.group()
-def arp():
+def arp() -> None:
     """Send arp packet"""
     pass
 
 
 @packet_sender_cli.group()
-def ecmp():
+def ecmp() -> None:
     """Send ecmp packet"""
     pass
 
 
 @packet_sender_cli.group()
-def ether():
+def ether() -> None:
     """Send ethernet packet"""
     pass
 
 
 @packet_sender_cli.group()
-def ip():
+def ip() -> None:
     """Send ip packet"""
     pass
 
 
 @packet_sender_cli.group()
-def ipv6():
+def ipv6() -> None:
     """Send ipv6 packet"""
     pass
 
 
 @packet_sender_cli.group()
-def tcp():
+def tcp() -> None:
     """Send tcp packet"""
     pass
 
 
 @packet_sender_cli.group()
-def udp():
+def udp() -> None:
     """Send udp packet"""
     pass
 
 
 @packet_sender_cli.group()
-def vxlan():
+def vxlan() -> None:
     """Send vxlan packet"""
     pass
 
@@ -70,17 +70,17 @@ def vxlan():
 # arp.add_command(send_arp_pkt)
 
 
-# # Add command to ecmp type
+# Add command to ecmp type
 # ecmp.add_command(configure_ecmp_pkt)
 # ecmp.add_command(send_ecmp_pkt)
 
 
-# # Add command to ether type
+# Add command to ether type
 ether.add_command(configure_ether_pkt)
 ether.add_command(send_ether_pkt)
 
 
-# # Add command to ip type
+# Add command to ip type
 # ip.add_command(configure_ip_pkt)
 # ip.add_command(send_ip_pkt)
 
@@ -90,17 +90,17 @@ ether.add_command(send_ether_pkt)
 # ipv6.add_command(send_ipv6_pkt)
 
 
-# # Add command to tcp type
+# Add command to tcp type
 # tcp.add_command(configure_tcp_pkt)
 # tcp.add_command(send_tcp_pkt)
 
 
-# # Add command to udp type
+# Add command to udp type
 # udp.add_command(configure_udp_pkt)
 # udp.add_command(send_udp_pkt)
 
 
-# # Add command to vxlan type
+# Add command to vxlan type
 # vxlan.add_command(configure_vxlan_pkt)
 # vxlan.add_command(send_vxlan_pkt)
 

@@ -17,7 +17,7 @@ def configure_ether_pkt(
     src: str | None = None,
     dst: str | None = None,
     type: str | None = None,
-):
+) -> None:
     """
     Configure header of an ethernet packet
 
@@ -50,7 +50,7 @@ def configure_ether_pkt(
 @click.command(name="send")
 @click.argument("pkt_id", metavar="<ether_packet_id>", required=True, type=int)
 @click.argument("interface", metavar="<EthernetX>", required=True)
-def send_ether_pkt(pkt_id: int):
+def send_ether_pkt(pkt_id: int) -> None:
     """
     Send ethernet packet
 
