@@ -114,13 +114,13 @@ def get_iface_ipv6_address(iface_name: str) -> str:
     Raises:
     - ValueError
     """
-    iface_ipv6_address = iface_ip_mappings.get(iface_name)
+    iface_ipv6_address = iface_ipv6_mappings.get(iface_name)
     if iface_ipv6_address is None:
         raise ValueError(
             "error getting interface {}. Available interfaces are listed below:\n{}".format(
                 iface_name,
                 tabulate.tabulate(
-                    iface_ip_mappings.items(),
+                    iface_ipv6_mappings.items(),
                     headers=["Interface Name", "IPv6 Address"],
                 ),
             )
