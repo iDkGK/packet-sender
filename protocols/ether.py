@@ -40,7 +40,7 @@ def configure_ether_pkt(
         "Packet with id {} was configured and write to database successfully.\n{}".format(
             pkt_id,
             tabulate.tabulate(
-                [[key, *(fields.values())]],
+                [[key, src, dst, type]],
                 headers=[
                     "Key",
                     "Source MAC Address",
