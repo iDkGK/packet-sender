@@ -1,8 +1,8 @@
 from __future__ import print_function
 
 import click
-from typing import Callable, Union
-from utilities.interface import get_iface_mac_address
+import tabulate
+from typing import Union
 
 # from utilities.redisclient import redisclient
 
@@ -26,8 +26,8 @@ def configure_ether_pkt(
     """
     Configure header of an ethernet packet
     """
-    key = "ETHER_PKT:HEADER: {}".format(pkt_id)
-    src = get_iface_mac_address("eth0") if src is None else src
+    key = "ETHER_PKT:HEADER:{}".format(pkt_id)
+    src = "00:11:22:33:44:55" if src is None else src
     dst = "ff:ff:ff:ff:ff:ff" if dst is None else dst
     type = "0x8000" if type is None else type
     fields = {
@@ -36,7 +36,20 @@ def configure_ether_pkt(
         "type": type,
     }
     # redisclient.set(key, fields)
-    print(key, fields)
+    print(
+        "Packet with id {} was configured and write to database successfully.\n{}".format(
+            pkt_id,
+            tabulate.tabulate(
+                [[key, *(fields.values())]],
+                headers=[
+                    "Key",
+                    "Source MAC Address",
+                    "Destination MAC Address",
+                    "Packet Type",
+                ],
+            ),
+        )
+    )
 
 
 @click.command(name="send")
@@ -44,9 +57,14 @@ def configure_ether_pkt(
 @click.argument("interface", metavar="<EthernetX>", required=True)
 def send_ether_pkt(
     pkt_id,  # type: int
+    interface,  # type: str
 ):
-    # type: (int) -> None
+    # type: (int, str) -> None
     """
     Send ethernet packet
     """
-    print("text: {}".format(pkt_id))
+    print(
+        "Packet with id {} was sent out through {} successfully.".format(
+            pkt_id, interface
+        )
+    )

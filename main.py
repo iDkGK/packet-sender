@@ -2,15 +2,15 @@ from __future__ import print_function
 
 import click
 
-# from protocol.arp import send_arp_pkt, configure_arp_pkt
-# from protocol.ecmp import send_ecmp_pkt, configure_ecmp_pkt
-from protocol.ether import send_ether_pkt, configure_ether_pkt
+# from protocols.arp import send_arp_pkt, configure_arp_pkt
+# from protocols.ecmp import send_ecmp_pkt, configure_ecmp_pkt
+from protocols.ether import send_ether_pkt, configure_ether_pkt
 
-# from protocol.ip import send_ip_pkt, configure_ip_pkt
-# from protocol.ipv6 import send_ipv6_pkt, configure_ipv6_pkt
-# from protocol.tcp import send_tcp_pkt, configure_tcp_pkt
-# from protocol.udp import send_udp_pkt, configure_udp_pkt
-# from protocol.vxlan import send_vxlan_pkt, configure_vxlan_pkt
+# from protocols.ip import send_ip_pkt, configure_ip_pkt
+# from protocols.ipv6 import send_ipv6_pkt, configure_ipv6_pkt
+# from protocols.tcp import send_tcp_pkt, configure_tcp_pkt
+# from protocols.udp import send_udp_pkt, configure_udp_pkt
+# from protocols.vxlan import send_vxlan_pkt, configure_vxlan_pkt
 
 
 @click.group()

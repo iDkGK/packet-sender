@@ -2,7 +2,7 @@
 
 ## Introduction
 
-A tool helpful for sending packets of different protocol
+A tool helpful for sending packets of different protocols
 
 ---
 
