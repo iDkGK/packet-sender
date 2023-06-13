@@ -1,64 +1,75 @@
+from __future__ import print_function
+
 import psutil
+import socket
+import sys
 import tabulate
 
-iface_mac_mappings: dict[str, str] = dict(
-    map(
-        lambda fkvp: (
-            fkvp[0],
-            list(filter(lambda fvalue: fvalue.family.name == "AF_LINK", fkvp[1]))[
-                0
-            ].address,
-        ),
-        filter(
-            lambda kvp: any(map(lambda value: value.family.name == "AF_LINK", kvp[1])),
-            psutil.net_if_addrs().items(),
-        ),
+if sys.version_info.major in (2, 3):
+    iface_mac_mappings = dict(
+        map(
+            lambda fkvp: (
+                fkvp[0],
+                list(
+                    filter(
+                        lambda fvalue: fvalue.family == psutil.AF_LINK,
+                        fkvp[1],
+                    )
+                )[0].address,
+            ),
+            filter(
+                lambda kvp: any(
+                    map(
+                        lambda value: value.family == psutil.AF_LINK,
+                        kvp[1],
+                    )
+                ),
+                psutil.net_if_addrs().items(),
+            ),
+        )
     )
-)
-
-iface_ip_mappings: dict[str, str] = dict(
-    map(
-        lambda fkvp: (
-            fkvp[0],
-            list(filter(lambda fvalue: fvalue.family.name == "AF_INET", fkvp[1]))[
-                0
-            ].address,
-        ),
-        filter(
-            lambda kvp: any(map(lambda value: value.family.name == "AF_INET", kvp[1])),
-            psutil.net_if_addrs().items(),
-        ),
+    iface_ip_mappings = dict(
+        map(
+            lambda fkvp: (
+                fkvp[0],
+                list(filter(lambda fvalue: fvalue.family == socket.AF_INET, fkvp[1]))[
+                    0
+                ].address,
+            ),
+            filter(
+                lambda kvp: any(
+                    map(lambda value: value.family == socket.AF_INET, kvp[1])
+                ),
+                psutil.net_if_addrs().items(),
+            ),
+        )
     )
-)
-
-iface_ipv6_mappings: dict[str, str] = dict(
-    map(
-        lambda fkvp: (
-            fkvp[0],
-            list(filter(lambda fvalue: fvalue.family.name == "AF_INET6", fkvp[1]))[
-                0
-            ].address,
-        ),
-        filter(
-            lambda kvp: any(map(lambda value: value.family.name == "AF_INET6", kvp[1])),
-            psutil.net_if_addrs().items(),
-        ),
+    iface_ipv6_mappings = dict(
+        map(
+            lambda fkvp: (
+                fkvp[0],
+                list(filter(lambda fvalue: fvalue.family == socket.AF_INET6, fkvp[1]))[
+                    0
+                ].address,
+            ),
+            filter(
+                lambda kvp: any(
+                    map(lambda value: value.family == socket.AF_INET6, kvp[1])
+                ),
+                psutil.net_if_addrs().items(),
+            ),
+        )
     )
-)
+else:
+    raise SystemError("unsupported python version")
 
 
-def get_iface_mac_address(iface_name: str) -> str:
+def get_iface_mac_address(
+    iface_name,  # type: str
+):
+    # type: (str) -> str
     """
     Get mac address of specific interface
-
-    Args:
-    - ``iface_name``: interface name
-
-    Returns:
-    - ``iface_mac_address``: MAC address of ``iface_name``
-
-    Raises:
-    - ``ValueError`` if interface with name ``iface_name`` does not exist
     """
     iface_mac_address = iface_mac_mappings.get(iface_name)
     if iface_mac_address is None:
@@ -74,18 +85,12 @@ def get_iface_mac_address(iface_name: str) -> str:
     return iface_mac_address
 
 
-def get_iface_ip_address(iface_name: str) -> str:
+def get_iface_ip_address(
+    iface_name,  # type: str
+):
+    # type: (str) -> str
     """
     Get ip address of specific interface
-
-    Args:
-    - ``iface_name``: interface name
-
-    Returns:
-    - ``iface_ip_address``: IP address of ``iface_name``
-
-    Raises:
-    - ``ValueError`` if interface with name ``iface_name`` does not exist
     """
     iface_ip_address = iface_ip_mappings.get(iface_name)
     if iface_ip_address is None:
@@ -101,18 +106,12 @@ def get_iface_ip_address(iface_name: str) -> str:
     return iface_ip_address
 
 
-def get_iface_ipv6_address(iface_name: str) -> str:
+def get_iface_ipv6_address(
+    iface_name,  # type: str
+):
+    # type: (str) -> str
     """
     Get ipv6 address of specific interface
-
-    Args:
-    - ``iface_name``: interface name
-
-    Returns:
-    - ``iface_ipv6_address``: IPv6 address of ``iface_name``
-
-    Raises:
-    - ``ValueError`` if interface with name ``iface_name`` does not exist
     """
     iface_ipv6_address = iface_ipv6_mappings.get(iface_name)
     if iface_ipv6_address is None:

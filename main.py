@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import click
 
 # from protocol.arp import send_arp_pkt, configure_arp_pkt
@@ -12,55 +14,64 @@ from protocol.ether import send_ether_pkt, configure_ether_pkt
 
 
 @click.group()
-def packet_sender_cli() -> None:
+def packet_sender_cli():
+    # type () -> None
     """A tool helpful for sending different protocols of packets"""
     pass
 
 
 @packet_sender_cli.group()
-def arp() -> None:
+def arp():
+    # type () -> None
     """Send arp packet"""
     pass
 
 
 @packet_sender_cli.group()
-def ecmp() -> None:
+def ecmp():
+    # type () -> None
     """Send ecmp packet"""
     pass
 
 
 @packet_sender_cli.group()
-def ether() -> None:
+def ether():
+    # type () -> None
     """Send ethernet packet"""
     pass
 
 
 @packet_sender_cli.group()
-def ip() -> None:
+def ip():
+    # type () -> None
     """Send ip packet"""
     pass
 
 
 @packet_sender_cli.group()
-def ipv6() -> None:
+def ipv6():
+    # type () -> None
     """Send ipv6 packet"""
     pass
 
 
 @packet_sender_cli.group()
-def tcp() -> None:
+def tcp():
+    # type () -> None
     """Send tcp packet"""
     pass
 
 
 @packet_sender_cli.group()
-def udp() -> None:
+def udp():
+    # type () -> None
     """Send udp packet"""
     pass
 
 
 @packet_sender_cli.group()
-def vxlan() -> None:
+def vxlan():
+    # type () -> None
     """Send vxlan packet"""
     pass
 

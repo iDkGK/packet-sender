@@ -1,4 +1,7 @@
+from __future__ import print_function
+
 import click
+from typing import Callable, Union
 from utilities.interface import get_iface_mac_address
 
 # from utilities.redisclient import redisclient
@@ -14,26 +17,14 @@ from utilities.interface import get_iface_mac_address
 )
 @click.option("-t", "--type", required=False, help="Type of Ethernet packet")
 def configure_ether_pkt(
-    pkt_id: int,
-    src: str | None = None,
-    dst: str | None = None,
-    type: str | None = None,
-) -> None:
+    pkt_id,  # type: int
+    src=None,  # type: Union[str, None]
+    dst=None,  # type: Union[str, None]
+    type=None,  # type: Union[str, None]
+):
+    # type: (int, Union[str, None], Union[str, None], Union[str, None]) -> None
     """
     Configure header of an ethernet packet
-
-    Args:
-    - ``pkt_id``: packet id
-    - ``src``: source mac address
-    - ``dst``: destination mac address
-    - ``type``: packet type
-
-    Returns:
-    - True if configuration succeeded
-    - False if configuration failed
-
-    Raises:
-    None
     """
     key = "ETHER_PKT:HEADER: {}".format(pkt_id)
     src = get_iface_mac_address("eth0") if src is None else src
@@ -51,17 +42,11 @@ def configure_ether_pkt(
 @click.command(name="send")
 @click.argument("pkt_id", metavar="<ether_packet_id>", required=True, type=int)
 @click.argument("interface", metavar="<EthernetX>", required=True)
-def send_ether_pkt(pkt_id: int) -> None:
+def send_ether_pkt(
+    pkt_id,  # type: int
+):
+    # type: (int) -> None
     """
     Send ethernet packet
-
-    Args:
-    - ``pkt_id``: packet id
-
-    Returns:
-    None
-
-    Raises:
-    None
     """
     print("text: {}".format(pkt_id))
